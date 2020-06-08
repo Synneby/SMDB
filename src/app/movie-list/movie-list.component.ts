@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import { MoviesService } from '../services/movies.service';
+// import { MoviesService } from '../services/movies.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -41,7 +41,7 @@ export class MovieListComponent implements OnInit {
   filterForm;
 
   constructor( 
-    private moviesService: MoviesService, 
+    // private moviesService: MoviesService, 
     private http: HttpClient, 
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
