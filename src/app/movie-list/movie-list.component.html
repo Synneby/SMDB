@@ -1,0 +1,65 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Home</a>
+  <button type="button" class="navcategory" type="submit" (click)="getPopular()">Popular</button>
+  <button type="button" class="navcategory" type="submit" (click)="getTopRated()">Top Rated</button>
+  <button type="button" class="navcategory" type="submit" (click)="getUpcoming()">Upcoming</button>
+
+
+  <div class="filter">
+    <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
+      
+    <select formControlName="genre" name="genre" id="genre" class="genre">
+      <option value="">Choose a genre</option>
+
+      <option [value]="genre.id" *ngFor="let genre of genres; let i=index">{{genre.name}}</option>
+    </select>
+    
+    <select formControlName="year" name="year" id="year" class="year">
+      <option value="">Choose a year</option>
+
+    <option [value]="year" *ngFor="let year of years; let i=index">{{year}}</option>
+    </select>
+    
+    <button type="submit" class="btn btn-outline-success">Filter</button>
+    </form>
+        </div>
+  
+  <div class="search">
+  <form class="form-inline my-2 my-lg-0">
+    <input [(ngModel)]="searchQuery" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onQuery()">Search</button>
+  </form></div>
+</nav>
+
+
+<!-- !TODO: Move this out of header and to the side -->
+    <!-- <div class="filter">
+<form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
+  
+  <label for="genres">Choose a genre:</label>
+<select formControlName="genre" name="genre" id="genre">
+  <option [value]="genre.id" *ngFor="let genre of genres; let i=index">{{genre.name}}</option>
+</select>
+
+<label for="years">Choose a year:</label>
+<select formControlName="year" name="year" id="year">
+<option [value]="year" *ngFor="let year of years; let i=index">{{year}}</option>
+</select>
+
+<button type="submit" class="btn btn-primary manage">Submit</button>
+</form>
+    </div> -->
+
+<div class="movie-list">
+    <div class="row">
+      <div class="col-sm-3" *ngFor="let movie of movies; let i=index">
+        <div class="card">
+          <div class="card-body" (click)="openDialog(movie.title, movie.overview, movie.poster_path, movie.release_date, movie.genre_ids)">
+            <img class="card-image" src="https://image.tmdb.org/t/p/w185/{{movie.poster_path}}">
+            <br>
+            <a>{{movie.title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
